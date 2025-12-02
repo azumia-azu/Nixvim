@@ -1,6 +1,7 @@
 {
   imports = [
     ./mini-files.nix
+    ./mini-indentscope.nix
     ./neo-tree.nix
     ./ufo.nix
     ./treesitter.nix

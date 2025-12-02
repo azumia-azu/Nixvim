@@ -8,7 +8,6 @@
       indent.enable = true;
       incremental_selection.enable = true;
     };
-    #TODO: 优化TS解析器列表
     grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
       bash # bashls
       c # clangd
@@ -19,6 +18,7 @@
       go # gopls
       javascript # ts_ls
       typescript # ts_ls
+      tsx
       html # html, emmet_ls
       css # cssls, stylelint_lsp
       json # jsonls
@@ -29,6 +29,9 @@
       vimdoc # vim help
       xml # 一些 XML 文件
       yaml # yaml 文件
+      make
+      ninja
+      diff
     ];
   };
 

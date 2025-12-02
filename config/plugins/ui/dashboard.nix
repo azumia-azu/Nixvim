@@ -1,6 +1,5 @@
 {
   plugins.dashboard.enable = true;
-  # TODO: 修复懒加载
   # plugins.dashboard.lazyLoad = {
   #   settings = {
   #     # event = ["VimEnter"];

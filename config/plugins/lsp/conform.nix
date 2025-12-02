@@ -23,7 +23,6 @@
       ];
       nix = ["alejandra"];
       lua = ["stylua"];
-      toml = ["taplo"];
       go = ["goimports"]; # 包含gofmt的功能，附带import的管理
       javascript = [
         "eslint_d"
@@ -45,6 +44,7 @@
       scss = ["prettierd"];
       html = ["prettierd"];
       yaml = ["prettierd"];
+      toml = ["taplo"];
       markdown = ["prettierd"];
       json = ["jq"];
       bash = ["shfmt"];

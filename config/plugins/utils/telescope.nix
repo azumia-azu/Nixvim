@@ -1,10 +1,8 @@
 {
   plugins.telescope = {
     enable = true;
-    lazyLoad = {
-      enable = true;
-      settings.cmd = "Telescope";
-    };
+    lazyLoad.settings.event = "User LazyFile";
+    # lazyLoad.settings.cmd = "Telescope"; # telescope的配置无法加载
   };
   #  插件Telescope的插件
   plugins.telescope.extensions = {
@@ -21,7 +19,28 @@
     };
   };
   # Telescope设置
-  plugins.telescope.settings = {};
+  plugins.telescope.settings = {
+    defaults = {
+      mappings = {
+        i = {
+          # 将水平分屏 (Split) 改为 Alt-S
+          "<A-s>" = {__raw = "require('telescope.actions').file_split";};
+          # 将垂直分屏 (Vsplit) 改为 Alt-V
+          "<A-v>" = {__raw = "require('telescope.actions').file_vsplit";};
+          # 将新标签页 (Tab) 改为 Alt-T
+          "<A-t>" = {__raw = "require('telescope.actions').file_tab";};
+        };
+        n = {
+          # 将水平分屏 (Split) 改为 Alt-S
+          "<A-s>" = {__raw = "require('telescope.actions').file_split";};
+          # 将垂直分屏 (Vsplit) 改为 Alt-V
+          "<A-v>" = {__raw = "require('telescope.actions').file_vsplit";};
+          # 将新标签页 (Tab) 改为 Alt-T
+          "<A-t>" = {__raw = "require('telescope.actions').file_tab";};
+        };
+      };
+    };
+  };
 
   keymaps = [
     {

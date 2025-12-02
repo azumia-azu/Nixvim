@@ -4,5 +4,6 @@
     ./noice.nix
     ./lualine.nix
     ./bufferline.nix
+    ./colorizer.nix
   ];
 }

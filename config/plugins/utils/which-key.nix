@@ -2,7 +2,7 @@
   plugins.which-key.enable = true;
   plugins.which-key.lazyLoad = {
     settings = {
-      keys = [ "<leader>" ];
+      keys = ["<leader>"];
     };
   };
   plugins.which-key.settings = {
@@ -19,6 +19,13 @@
         __unkeyed-1 = "<leader>c";
         group = "lsp操作";
         icon = "";
+        mode = "n";
+      }
+
+      {
+        __unkeyed-1 = "<leader>m";
+        group = "文件标记跳转";
+        icon = "󰃀";
         mode = "n";
       }
 
@@ -51,6 +58,13 @@
       }
 
       {
+        __unkeyed-1 = "<leader>h";
+        group = "Git Hunk/代码块修改";
+        icon = "";
+        mode = "n";
+      }
+
+      {
         __unkeyed-1 = "<leader><tab>";
         group = "tab管理";
         icon = "󰓩";
@@ -65,12 +79,18 @@
       }
 
       {
+        __unkeyed-1 = "<leader>H";
+        group = "帮助查询";
+        icon = "";
+        mode = "n";
+      }
+
+      {
         __unkeyed-1 = "<leader>q";
         group = "退出编辑器";
         icon = "󰩈";
         mode = "n";
       }
-
     ];
   };
 }
