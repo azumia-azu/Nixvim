@@ -22,6 +22,7 @@
       enabled = true;
       view = "notify";
     };
+    lsp.progress.enabled = false;
     lsp.hover.enabled = false;
   };
 }

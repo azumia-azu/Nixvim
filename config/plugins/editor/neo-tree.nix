@@ -14,6 +14,8 @@
         enabled = true;
         leave_dirs_open = true;
       };
+      group_empty_dirs = true; # 将空目录合并显示
+      hijack_netrw = true; # 接管 Neovim 内置的 netrw
     };
 
     default_component_configs = {

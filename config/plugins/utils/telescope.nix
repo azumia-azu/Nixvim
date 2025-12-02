@@ -1,31 +1,27 @@
 {
   plugins.telescope = {
-    settings = {
-      defaults = {
-        ivy = {
-          height = 0.30;
-        };
-      };
-    };
+    enable = true;
     lazyLoad = {
       enable = true;
       settings.cmd = "Telescope";
     };
-    enable = true;
-    extensions = {
-      fzf-native = {
-        enable = true;
-      };
+  };
+  #  插件Telescope的插件
+  plugins.telescope.extensions = {
+    fzf-native = {
+      enable = true;
+    };
 
-      file-browser = {
-        enable = true;
-      };
+    file-browser = {
+      enable = true;
+    };
 
-      live-grep-args = {
-        enable = true;
-      };
+    live-grep-args = {
+      enable = true;
     };
   };
+  # Telescope设置
+  plugins.telescope.settings = {};
 
   keymaps = [
     {
@@ -37,7 +33,7 @@
       };
     }
     {
-      action = "<CMD>Telescope find_files theme=dropdown previewer=false<CR>";
+      action = "<CMD>Telescope find_files theme=dropdown previewer=false layout_config={height=0.3}<CR>";
       key = "<leader>ff";
       options = {
         silent = true;
@@ -45,7 +41,7 @@
       };
     }
     {
-      action = "<CMD>Telescope grep_string theme=ivy<CR>";
+      action = "<CMD>Telescope grep_string theme=ivy layout_config={height=0.4}<CR>";
       key = "<leader>fs";
       options = {
         silent = true;
@@ -53,7 +49,7 @@
       };
     }
     {
-      action = "<CMD>Telescope live_grep<CR>";
+      action = "<CMD>Telescope live_grep theme=ivy layout_config={height=0.4}<CR>";
       key = "<leader>fg";
       options = {
         silent = true;
@@ -61,7 +57,7 @@
       };
     }
     {
-      action = "<CMD>Telescope buffers<CR>";
+      action = "<CMD>Telescope buffers layout_config={mirror=true,prompt_position=top,height=0.4,width=0.6} layout_strategy=vertical previewer=false<CR>";
       key = "<leader>fb";
       options = {
         silent = true;
@@ -77,7 +73,7 @@
       };
     }
     {
-      action = "<CMD>Telescope live_grep_args<CR>";
+      action = "<CMD>Telescope live_grep_args theme=ivy layout_config={height=0.4}<CR>";
       key = "<leader>fr";
       options = {
         silent = true;
@@ -90,6 +86,14 @@
       options = {
         silent = true;
         desc = "快捷键查询";
+      };
+    }
+    {
+      action = "<CMD>Telescope help_tags<CR>";
+      key = "<leader>H";
+      options = {
+        silent = true;
+        desc = "帮助查询";
       };
     }
   ];

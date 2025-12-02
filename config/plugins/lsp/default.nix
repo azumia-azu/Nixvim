@@ -1,7 +1,8 @@
 {
   imports = [
-    # ./lsp.nix
+    ./lsp.nix
     ./blink.nix
     ./conform.nix
+    ./fidget.nix
   ];
 }
