@@ -45,7 +45,6 @@
           group = "Label";
           icon = " ";
           desc = "Find   ";
-          icon_hl = "@variable";
           key = "f";
         }
         {
@@ -55,8 +54,16 @@
           group = "Label";
           icon = " ";
           desc = "Project   ";
-          icon_hl = "@variable";
           key = "p";
+        }
+        {
+          action = {
+            __raw = "function(path) require('persistence').load() end";
+          };
+          group = "Label";
+          icon = "󰒲 ";
+          desc = "Session   ";
+          key = "s";
         }
         {
           action = {

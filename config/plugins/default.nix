@@ -8,6 +8,7 @@
     ./snippets
   ];
 
+  #TODO: 试着还原一下主题选择功能
   colorschemes.gruvbox.enable = true;
   colorschemes.gruvbox.lazyLoad = {
     enable = true;

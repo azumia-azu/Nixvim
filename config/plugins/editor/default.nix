@@ -1,6 +1,6 @@
 {
   imports = [
-    #TODO: aerial.nvim侧边栏或浮窗：以可折叠的树状结构显示。
+    ./aerial.nix
     ./mini-files.nix
     ./mini-indentscope.nix
     ./neo-tree.nix

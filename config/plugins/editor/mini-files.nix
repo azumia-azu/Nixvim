@@ -15,7 +15,20 @@
   keymaps = [
     {
       mode = "n";
-      action = "<CMD>lua MiniFiles.open()<CR>";
+      action.__raw = ''
+        function()
+          local ok, _ = pcall(require, "mini-files")
+          if not ok then
+            vim.notify(
+              "mini-files 未加载，请检查插件是否启用",
+              vim.log.levels.WARN,
+              { title = "mini-files" }
+            )
+            return
+          end
+          MiniFiles.open()
+        end
+      '';
       key = "-";
       options = {
         silent = true;

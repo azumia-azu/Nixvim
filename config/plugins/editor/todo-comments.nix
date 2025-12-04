@@ -10,7 +10,21 @@
 
   keymaps = [
     {
-      action = "<CMD>Telescope todo-comments todo theme=dropdown<CR>";
+      action.__raw = ''
+        function()
+          local ok, _ = pcall(require, "todo-comments")
+          if not ok then
+            vim.notify(
+              "todo-comments 未加载，请检查插件是否启用",
+              vim.log.levels.WARN,
+              { title = "Todo" }
+            )
+            return
+          end
+
+          vim.cmd("Telescope todo-comments todo theme=dropdown")
+        end
+      '';
       key = "<leader>T";
       options = {
         silent = true;

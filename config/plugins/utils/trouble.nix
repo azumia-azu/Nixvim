@@ -6,7 +6,7 @@
   keymaps = [
     #打开/关闭TODO查询面板
     {
-      action = "<cmd>Trouble diagnostics toggle<cr>";
+      action = "<cmd>TodoTrouble<cr>";
       key = "<leader>xt";
       options = {
         silent = true;
@@ -31,16 +31,6 @@
       options = {
         silent = true;
         desc = "切换当前缓冲区的诊断面板 (Trouble)";
-      };
-    }
-
-    # 打开/关闭符号面板
-    {
-      action = "<cmd>Trouble symbols toggle focus=false<cr>";
-      key = "<leader>cs";
-      options = {
-        silent = true;
-        desc = "切换符号面板 (Trouble)";
       };
     }
 
