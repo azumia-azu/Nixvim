@@ -119,6 +119,13 @@
         icon = "󰩈";
         mode = "n";
       }
+
+      {
+        __unkeyed-1 = "<leader>p";
+        group = "Markdown内容预览";
+        icon = "󰍔";
+        mode = "n";
+      }
     ];
   };
 }

@@ -5,7 +5,7 @@
   };
   plugins.nvim-ufo.lazyLoad = {
     settings = {
-      event = ["BufReadPost"];
+      event = ["User LazyFile"];
     };
   };
   plugins.nvim-ufo.setupLspCapabilities = true;
@@ -67,7 +67,7 @@
       key = "zR";
       options = {
         silent = true;
-        desc = "折叠全部代码";
+        desc = "打开全部代码";
       };
       mode = "n";
     }
@@ -80,7 +80,7 @@
       key = "zM";
       options = {
         silent = true;
-        desc = "打开全部代码";
+        desc = "折叠全部代码";
       };
       mode = "n";
     }

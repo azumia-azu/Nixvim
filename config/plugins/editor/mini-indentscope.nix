@@ -3,7 +3,7 @@
   plugins.mini-indentscope.lazyLoad = {
     enable = true;
     settings = {
-      event = ["User LazyFile"];
+      event = ["InsertEnter"];
     };
   };
   plugins.mini-indentscope.settings = {
@@ -11,5 +11,15 @@
     options = {
       try_as_border = true;
     };
+    filetype_exclude = [
+      "alpha"
+      "dashboard"
+      "snacks_dashboard"
+    ];
+    buftype_exclude = [
+      "nofile"
+      "prompt"
+      "terminal"
+    ];
   };
 }

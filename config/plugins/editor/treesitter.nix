@@ -37,6 +37,7 @@
 
   plugins.treesitter.lazyLoad = {
     settings = {
+      # event = ["FileType"];
       event = ["User LazyFile"];
     };
   };

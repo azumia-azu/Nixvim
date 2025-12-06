@@ -3,12 +3,12 @@
     ./aerial.nix
     ./autotag.nix
     ./mini-files.nix
-    ./mini-indentscope.nix
+    ./mini-indentscope.nix # 高亮当前块缩进参考线
+    ./indent-blankline.nix # 缩进参考线(全部)
     ./neo-tree.nix
     ./ufo.nix
     ./treesitter.nix
     ./todo-comments.nix
-    ./indent-blankline.nix
     ./rainbow-delimiters.nix
   ];
 

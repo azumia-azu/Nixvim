@@ -3,7 +3,7 @@
   plugins.harpoon.lazyLoad = {
     enable = true;
     settings = {
-      event = ["BufReadPost"];
+      event = ["User LazyFile"];
     };
   };
   plugins.harpoon.settings = {

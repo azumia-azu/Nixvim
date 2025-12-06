@@ -7,7 +7,6 @@
   # KEYMAPS
   # --------------------
   keymaps = [
-
     # j / k 改 gj / gk
     {
       mode = "n";
@@ -164,7 +163,8 @@
       key = "<A-j>";
       action = ":m .+1<CR>==";
       options = {
-        desc = "Move line down";
+        silent = true;
+        desc = "向下移动行";
       };
     }
     {
@@ -172,7 +172,8 @@
       key = "<A-k>";
       action = ":m .-2<CR>==";
       options = {
-        desc = "Move line up";
+        silent = true;
+        desc = "向上移动行";
       };
     }
     {
@@ -180,7 +181,8 @@
       key = "<A-j>";
       action = ":m '>+1<CR>gv=gv";
       options = {
-        desc = "Move selection down";
+        silent = true;
+        desc = "向下移动选择";
       };
     }
     {
@@ -188,7 +190,8 @@
       key = "<A-k>";
       action = ":m '<-2<CR>gv=gv";
       options = {
-        desc = "Move selection up";
+        silent = true;
+        desc = "向上移动选择";
       };
     }
 

@@ -2,7 +2,10 @@
   plugins.dashboard.enable = true;
   plugins.dashboard.lazyLoad = {
     settings = {
-      event = ["VimEnter"];
+      enabled.__raw = ''
+        function()
+          return vim.fn.argc() == 0
+        end'';
     };
   };
   plugins.dashboard.settings = {

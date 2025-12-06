@@ -15,6 +15,19 @@
   extraFiles."lua/features/theme-list.lua".source = ./theme-list.lua;
   extraFiles."lua/features/switch-theme.lua".source = ./switch-theme.lua;
 
+  autoCmd = [
+    {
+      desc = "加载颜色主题切换功能";
+      event = "VimEnter";
+      callback = {
+        __raw = ''
+          function()
+            require("features.switch-theme").setup()
+          end'';
+      };
+    }
+  ];
+
   keymaps = [
     {
       mode = "n";

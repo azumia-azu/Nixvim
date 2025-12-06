@@ -40,6 +40,34 @@
       };
     }
 
+    {
+      desc = "tab大小控制";
+      event = "TextYankPost";
+      pattern = "*";
+      group = "highlight-yank";
+      callback = {
+        __raw = ''
+          function()
+            vim.highlight.on_yank({ timeout = 500 })
+          end
+        '';
+      };
+    }
+
+    {
+      desc = "部分文档文件开启自动软换行";
+      event = "FileType";
+      pattern = ["markdown" "md" "text"];
+      callback = {
+        __raw = ''
+          function()
+            vim.opt_local.wrap = true
+            vim.opt_local.linebreak = true
+          end
+        '';
+      };
+    }
+
     # {
     #    desc = "保存格式化";
     #    event = "BufWritePre";
@@ -95,6 +123,20 @@
               pcall(vim.cmd, "Neotree close")
               pcall(vim.cmd, "AerialClose")
               pcall(vim.cmd, "Trouble close")
+          end
+        '';
+      };
+    }
+
+    {
+      desc = "mini-indentscope排除首页的缩进线";
+      event = "FileType";
+      pattern = ["dashboard" "alpha" "snacks_dashboard"];
+      once = true;
+      callback = {
+        __raw = ''
+          function()
+            vim.b.miniindentscope_disable = true
           end
         '';
       };

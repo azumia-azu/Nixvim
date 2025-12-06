@@ -1,6 +1,5 @@
 {
   imports = [
-    #TODO: 安装markdown的插件
     ./flash.nix
     ./telescope.nix
     ./toggleterm.nix
@@ -9,5 +8,7 @@
     ./harpoon.nix
     ./trouble.nix
     ./persistence.nix
+    ./markdown-preview.nix
+    ./render-markdown.nix
   ];
 }
