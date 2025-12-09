@@ -123,6 +123,7 @@
             pcall(vim.cmd, "Neotree close")
             pcall(vim.cmd, "AerialClose")
             pcall(vim.cmd, "Trouble close")
+            pcall(vim.cmd, "ObsessClose")
 
             local ok, dapui = pcall(require, "dapui")
             if ok then
@@ -146,7 +147,7 @@
         '';
       };
     }
-
+    # NOTE: 模仿的Verylazy。说实话这个简易版的用起来还不错。爽！
     {
       desc = "自定义事件CookLazy";
       event = "VimEnter";

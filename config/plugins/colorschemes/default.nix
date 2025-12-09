@@ -15,6 +15,7 @@
   extraFiles."lua/features/theme-list.lua".source = ./theme-list.lua;
   extraFiles."lua/features/switch-theme.lua".source = ./switch-theme.lua;
 
+  # NOTE: 这个主题切换感觉是个半残废功能，但能用。保持优雅!!!
   autoCmd = [
     {
       desc = "加载颜色主题切换功能";

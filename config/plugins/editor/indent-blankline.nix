@@ -17,5 +17,8 @@
     indent = {
       char = "│";
     };
+    scope = {
+      enabled = false;
+    };
   };
 }

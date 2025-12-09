@@ -49,7 +49,7 @@
 
         devShells.default = pkgs.mkShell {
           packages = [
-            nvim
+            # nvim
           ];
         };
       };

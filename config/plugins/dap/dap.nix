@@ -5,59 +5,73 @@
   plugins.dap.lazyLoad = {
     enable = true;
     settings = {
-      key = ["<F5>" "<leader>d"];
+      #NOTE: 狗屎一样的懒加载写法，丑陋，太恶心了。无奈之举
+      keys = [
+        {
+          __unkeyed-1 = "<leader>dB";
+          __unkeyed-3.__raw = ''
+            function()
+              require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: '))
+            end
+          '';
+          desc = "● 条件断点";
+        }
+        {
+          __unkeyed-1 = "<leader>db";
+          __unkeyed-3.__raw = ''
+            function()
+              require("dap").toggle_breakpoint()
+            end
+          '';
+          desc = "● 切换断点";
+        }
+        {
+          __unkeyed-1 = "<leader>dc";
+          __unkeyed-3.__raw = ''
+            function()
+              require("dap").continue()
+            end
+          '';
+          desc = "▶ 启动/继续调试";
+        }
+      ];
     };
   };
   plugins.dap.signs = {
     dapBreakpoint = {text = "🔴";};
   };
-
-  plugins.dap-virtual-text.enable = true;
-  plugins.dap-virtual-text.lazyLoad = {
-    enable = true;
-    settings = {
-      event = ["User CookLazy"];
-    };
-  };
-  plugins.dap-virtual-text.settings = {
-    enabled = true;
-    enabled_commands = true;
-    highlight_changed_variables = true;
-    highlight_new_as_changed = false;
-    only_first_definition = true;
-    show_stop_reason = true;
-    clear_on_continue = false;
-    virt_text_pos = "eol"; # 强制放到行尾
+  plugins.dap.signs = {
+    dapBreakpointCondition = {text = "🟡";};
   };
 
   keymaps = [
     # 断点
-    {
-      mode = "n";
-      key = "<leader>dB";
-      action.__raw = ''
-        function()
-          require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: '))
-        end
-      '';
-      options = {
-        silent = true;
-        desc = "条件断点";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>db";
-      action.__raw = ''
-        function()
-          require("dap").toggle_breakpoint()
-        end
-      '';
-      options = {
-        silent = true;
-        desc = "切换断点";
-      };
-    }
+    #   {
+    #     mode = "n";
+    #     key = "<leader>dB";
+    #     action.__raw = ''
+    #       function()
+    #         require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: '))
+    #       end
+    #     '';
+    #     options = {
+    #       silent = true;
+    #       desc = "● 条件断点";
+    #     };
+    #   }
+    #   {
+    #     mode = "n";
+    #     key = "<leader>db";
+    #     action.__raw = ''
+    #       function()
+    #         require("dap").toggle_breakpoint()
+    #       end
+    #     '';
+    #     options = {
+    #       silent = true;
+    #       desc = "● 切换断点";
+    #     };
+    #   }
     {
       mode = "n";
       key = "<leader>dd";
@@ -68,23 +82,23 @@
       '';
       options = {
         silent = true;
-        desc = "清理所有断点";
+        desc = "󰆴 清理所有断点";
       };
     }
     # 启动 / 继续（双通道：F5 + <leader>dc）
-    {
-      mode = "n";
-      key = "<leader>dc";
-      action.__raw = ''
-        function()
-          require("dap").continue()
-        end
-      '';
-      options = {
-        silent = true;
-        desc = "启动/继续调试";
-      };
-    }
+    #   {
+    #     mode = "n";
+    #     key = "<leader>dc";
+    #     action.__raw = ''
+    #       function()
+    #         require("dap").continue()
+    #       end
+    #     '';
+    #     options = {
+    #       silent = true;
+    #       desc = "▶ 启动/继续调试";
+    #     };
+    #   }
     {
       mode = "n";
       key = "<F5>";
@@ -95,7 +109,7 @@
       '';
       options = {
         silent = true;
-        desc = "启动/继续调试(F5)";
+        desc = "▶ 启动/继续调试(F5)";
       };
     }
     # 终止调试
@@ -109,7 +123,7 @@
       '';
       options = {
         silent = true;
-        desc = "终止调试";
+        desc = "■ 终止调试";
       };
     }
     # 单步调试（双通道）
@@ -123,7 +137,7 @@
       '';
       options = {
         silent = true;
-        desc = "单步跳过(不进函数)";
+        desc = " 单步跳过(不进函数)";
       };
     }
     {
@@ -136,7 +150,7 @@
       '';
       options = {
         silent = true;
-        desc = "单步跳过(不进函数)";
+        desc = " 单步跳过(不进函数)";
       };
     }
     {
@@ -149,7 +163,7 @@
       '';
       options = {
         silent = true;
-        desc = "单步进入函数";
+        desc = "󰆹 单步进入函数";
       };
     }
     {
@@ -162,7 +176,7 @@
       '';
       options = {
         silent = true;
-        desc = "单步进入函数";
+        desc = "󰆹 单步进入函数";
       };
     }
     {
@@ -175,7 +189,7 @@
       '';
       options = {
         silent = true;
-        desc = "单步跳出函数";
+        desc = "󰆸 单步跳出函数";
       };
     }
     {
@@ -188,7 +202,7 @@
       '';
       options = {
         silent = true;
-        desc = "单步跳出函数";
+        desc = "󰆸 单步跳出函数";
       };
     }
     # 调用栈切换
@@ -229,7 +243,7 @@
       '';
       options = {
         silent = true;
-        desc = "重新运行上一次调试";
+        desc = "󰜉 重新运行上一次调试";
       };
     }
     # 运行到光标
@@ -257,7 +271,7 @@
       '';
       options = {
         silent = true;
-        desc = "打开/关闭调试REPL";
+        desc = "󰆍 打开/关闭调试REPL";
       };
     }
     # 变量悬浮查看
@@ -271,7 +285,7 @@
       '';
       options = {
         silent = true;
-        desc = "悬浮查看变量值";
+        desc = "󰈈 悬浮查看变量值";
       };
     }
   ];

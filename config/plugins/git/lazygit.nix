@@ -1,3 +1,4 @@
+# NOTE: 在../dependencies中依旧安装好了lazygit
 {
   plugins.lazygit.enable = true;
   keymaps = [

@@ -1,3 +1,5 @@
+# NOTE: 这个首页极大的拉低了加载的速度,关掉能提升不少，但是关掉就不好看了。
+# NOTE:保持优雅!!!
 {
   plugins.dashboard.enable = true;
   plugins.dashboard.lazyLoad = {

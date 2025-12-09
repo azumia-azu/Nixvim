@@ -9,6 +9,7 @@
     ./snippets
     ./colorschemes
     ./dependencies
+    ./github # 安装github上的插件(含有配置示例)
   ];
 
   plugins = {

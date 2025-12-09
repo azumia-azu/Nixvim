@@ -12,6 +12,9 @@
       bash # bashls
       c # clangd
       cpp # clangd
+      cmake
+      make
+      ninja
       lua # lua_ls
       python # pyright, ruff
       rust # rust_analyzer
@@ -29,8 +32,6 @@
       vimdoc # vim help
       xml # 一些 XML 文件
       yaml # yaml 文件
-      make
-      ninja
       diff
     ];
   };

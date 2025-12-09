@@ -7,6 +7,8 @@
   };
   plugins.which-key.settings = {
     preset = "helix";
+    # NOTE: 厚礼谢，这个配置谁知道写了什么!!! 还是进入编辑器后使用 <leader>fk 慢慢查阅吧。(很不幸，这个快捷键暂时屏蔽，会报错)
+    # NOTE: 为什么是中文?? 你猜！
     spec = [
       {
         __unkeyed-1 = "<leader>f";
@@ -21,27 +23,12 @@
         icon = "";
         mode = "n";
       }
-      # 调试
+      # ===== 调试主分组 =====
       {
         __unkeyed-1 = "<leader>d";
         group = "调试";
         icon = "";
         mode = "n";
-      }
-      {
-        __unkeyed-1 = "<leader>dc";
-        desc = "启动 / 继续调试";
-        icon = "▶ ";
-      }
-      {
-        __unkeyed-1 = "<leader>db";
-        desc = "切换断点";
-        icon = "● ";
-      }
-      {
-        __unkeyed-1 = "<leader>dx";
-        desc = "终止调试";
-        icon = "■ ";
       }
 
       {
@@ -139,6 +126,12 @@
         __unkeyed-1 = "<leader>p";
         group = "Markdown内容预览";
         icon = "󰍔";
+        mode = "n";
+      }
+      {
+        __unkeyed-1 = "<leader>o";
+        group = "专注面板";
+        icon = "";
         mode = "n";
       }
     ];

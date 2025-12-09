@@ -1,3 +1,4 @@
+# NOTE: 方便与加载速度，显然我选择前者。但依旧，保持优雅!!!
 {
   plugins.lsp = {
     enable = true;
@@ -6,12 +7,18 @@
   plugins.lsp.lazyLoad = {
     enable = true;
     settings = {
+      # 使用ft加载lsp后startuptime的速度还会提高十多毫秒，但是我觉得维护太麻烦，不如就使用event。方便不差这点速度
+      # ft = ["lua" "nix" "rust" "go" "python" "c" "cpp" "typescript" "javascript"];
       event = ["FileType"];
     };
   };
   plugins.lsp.servers = {
     # C/C++ 语言服务器
     clangd = {
+      enable = true;
+    };
+    # CMake的LSP
+    cmake = {
       enable = true;
     };
     # Rust 语言服务器
