@@ -17,7 +17,7 @@
     fileformat = "unix"; # 设置文件默认保存格式为 Unix (LF)
     fileformats = ["unix" "dos" "mac"]; # 文件格式检测优先级
     wrap = false; # 不换行显示
-    colorcolumn = "80,120"; # 标记列 80 和 120
+    # colorcolumn = "80,120"; # 标记列 80 和 120
 
     # --- 搜索 ---
     ignorecase = true; # 搜索忽略大小写
@@ -59,5 +59,15 @@
     };
     foldenable = true;
     foldlevelstart = 99; # 默认展开所有
+    sessionoptions = [
+      "buffers"
+      "curdir"
+      "tabpages"
+      "winsize"
+      "help"
+      "globals"
+      "skiprtp"
+      "folds"
+    ];
   };
 }

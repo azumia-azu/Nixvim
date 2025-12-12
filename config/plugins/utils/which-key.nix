@@ -23,6 +23,13 @@
         icon = "";
         mode = "n";
       }
+
+      {
+        __unkeyed-1 = "<leader>a";
+        group = "AI";
+        icon = "󱚣";
+        mode = ["n" "v"];
+      }
       # ===== 调试主分组 =====
       {
         __unkeyed-1 = "<leader>d";

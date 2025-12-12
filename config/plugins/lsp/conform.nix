@@ -26,33 +26,45 @@
       lua = ["stylua"];
       go = ["goimports"]; # 包含gofmt的功能，附带import的管理
       javascript = [
-        "eslint_d"
         "prettierd"
+        "prettier"
       ];
       typescript = [
-        "eslint_d"
         "prettierd"
+        "prettier"
       ];
       javascriptreact = [
-        "eslint_d"
+        "prettier"
         "prettierd"
       ];
       typescriptreact = [
-        "eslint_d"
         "prettierd"
+        "prettier"
       ];
-      css = ["prettierd"];
-      scss = ["prettierd"];
-      html = ["prettierd"];
-      yaml = ["prettierd"];
+      css = [
+        "prettierd"
+        "prettier"
+      ];
+      scss = [
+        "prettierd"
+        "prettier"
+      ];
+      html = [
+        "prettierd"
+        "prettier"
+      ];
       toml = ["taplo"];
-      markdown = ["prettierd"];
+      yaml = ["yamlfmt"];
+      markdown = [
+        "prettierd"
+        "prettier"
+      ];
       json = ["jq"];
       bash = ["shfmt"];
     };
 
     format_on_save = {
-      timeout_ms = 500; # 格式化超时时间（毫秒）
+      timeout_ms = 600; # 格式化超时时间（毫秒）
       lsp_fallback = true; # 如果没有可用的格式化器，使用 LSP 格式化
     };
   };

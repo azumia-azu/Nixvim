@@ -114,25 +114,26 @@
       };
     }
 
-    {
-      desc = "在neovim退出前，关闭掉一些会话恢复会出问题的窗口";
-      event = "VimLeavePre";
-      callback = {
-        __raw = ''
-          function()
-            pcall(vim.cmd, "Neotree close")
-            pcall(vim.cmd, "AerialClose")
-            pcall(vim.cmd, "Trouble close")
-            pcall(vim.cmd, "ObsessClose")
-
-            local ok, dapui = pcall(require, "dapui")
-            if ok then
-              dapui.close()  -- 关闭所有 dap-ui 窗口
-            end
-          end
-        '';
-      };
-    }
+    # NOTE: 保留，使用 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }即可实现下面的功能
+    # {
+    #   desc = "在neovim退出前，关闭掉一些会话恢复会出问题的窗口";
+    #   event = "VimLeavePre";
+    #   callback = {
+    #     __raw = ''
+    #       function()
+    #         pcall(vim.cmd, "Neotree close")
+    #         pcall(vim.cmd, "AerialClose")
+    #         pcall(vim.cmd, "Trouble close")
+    #         pcall(vim.cmd, "ObsessClose")
+    #
+    #         local ok, dapui = pcall(require, "dapui")
+    #         if ok then
+    #           dapui.close()  -- 关闭所有 dap-ui 窗口
+    #         end
+    #       end
+    #     '';
+    #   };
+    # }
 
     {
       desc = "mini-indentscope排除首页的缩进线";

@@ -11,16 +11,14 @@
       src = pkgs.fetchFromGitHub {
         owner = "Youthdreamer";
         repo = "obsess";
-        rev = "4c84f7273afa0bc704ea9335a7647344edfb1438";
-        hash = "sha256-8An3kn3ig0BIXvmIGQ4lCx/cvxwa+YTPL8NO4u+4PAE=";
+        rev = "22142f988073292ce51c4568fbda0a40970b876d";
+        hash = "sha256-mWNZutb1Jzmp4CBCLAYaw3YJDv8tZJBcrBWq5TRgiMY=";
       };
     })
   ];
   extraConfigLua = ''
     local WINDOW_WIDTH = 60
     local WINDOW_HEIGHT = 15
-    local lines = vim.api.nvim_get_option('lines')
-    local columns = vim.api.nvim_get_option('columns')
 
     local opts = {
         window = {
@@ -32,6 +30,7 @@
             col = (vim.api.nvim_get_option('columns') - WINDOW_WIDTH) / 2,
             border = "rounded",
             style = "minimal",
+            title = "Obsess",
         },
         -- 倒计时结束后的弹窗提醒设置
         flash = {
@@ -44,9 +43,8 @@
       {
         "obsess",
         cmd = {
-          "ObsessToggle", "ObsessClose", "ObsessTimer",
-          "ObsessTimerSec", "ObsessTaskAdd", "ObsessTaskDone",
-          "ObsessTaskDel", "ObsessTaskClear"
+          "ObsessToggle", "ObsessClose", "ObsessTimer", "ObsessTimerSec",
+          "ObsessTaskAdd", "ObsessTaskClear", "ObsessTaskDel", "ObsessTaskDone",
         },
         after = function()
           require("obsess").setup(opts)

@@ -2,6 +2,7 @@
   imports = [
     ./editor
     ./ui
+    ./ai
     ./utils
     ./lsp
     ./dap

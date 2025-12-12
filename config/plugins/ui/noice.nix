@@ -14,7 +14,6 @@
   };
   plugins.notify.lazyLoad = {
     settings = {
-      # event = ["DeferredUIEnter"];
       event = ["User CookLazy"];
     };
   };
@@ -23,6 +22,7 @@
       enabled = true;
       view = "notify";
     };
+    lsp.signature.enabled = false;
     lsp.progress.enabled = false;
     lsp.hover.enabled = false;
   };

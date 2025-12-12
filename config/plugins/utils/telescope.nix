@@ -6,6 +6,9 @@
   };
   #  插件Telescope的插件
   plugins.telescope.extensions = {
+    # ui-select = {
+    #   enable = true;
+    # };
     fzf-native = {
       enable = true;
     };

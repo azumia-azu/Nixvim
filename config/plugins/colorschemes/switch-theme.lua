@@ -12,11 +12,22 @@ local theme_path = config_path .. "/theme" -- 主题持久化文件位置
 local function load_theme()
 	local file = io.open(theme_path, "r")
 	if file then
-		-- 读取文件
-		local theme = file:read("*a")
+		local data = file:read("*a")
 		file:close()
-		if theme and theme ~= "" then
-			vim.cmd("colorscheme " .. theme)
+
+		-- 解析保存的数据
+		if data and data ~= "" then
+			local theme_name, style = string.match(data, "([^:]+):?([^:]*)")
+
+			if theme_name and theme_name ~= "" then
+				-- 1. 应用 style
+				if style and style ~= "" then
+					vim.o.background = style -- 设置 vim 的 'background' 选项
+				end
+
+				-- 2. 加载主题
+				vim.cmd("colorscheme " .. theme_name)
+			end
 		else
 			vim.cmd("colorscheme default")
 		end
@@ -90,7 +101,17 @@ local switch_theme = function(opts)
 						vim.notify("未选中主题" .. selection, vim.log.levels.ERROR)
 						return
 					end
-					vim.cmd("colorscheme " .. selection.value)
+
+					local theme_name = selection.value
+					local theme_info = custom_theme_list[theme_name] or {}
+
+					--  尝试设置全局 style 变量（许多主题插件会读取它）
+					if theme_info.style then
+						vim.o.background = theme_info.style -- 设置 vim 的 'background' 选项
+						vim.g.theme_style = theme_info.style -- 设置一个自定义全局变量供插件使用
+					end
+
+					vim.cmd("colorscheme " .. theme_name)
 					actions.close(prompt_bufnr)
 				end)
 				return true
@@ -101,9 +122,13 @@ end
 
 -- 持久化保存主题，以便下次打开时加载
 local function save_theme(current_theme)
+	-- 获取当前 theme 的 style 信息（light 或 dark）
+	local current_style = vim.o.background or "dark"
+	local data_to_save = current_theme .. ":" .. current_style
+
 	local file = io.open(theme_path, "w")
 	if file then
-		file:write(current_theme) -- 将主题，存入文件
+		file:write(data_to_save) -- 将主题，存入文件
 		file:close()
 	end
 end

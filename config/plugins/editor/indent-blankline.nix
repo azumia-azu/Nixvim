@@ -2,7 +2,7 @@
   plugins.indent-blankline.enable = true;
   plugins.indent-blankline.lazyLoad = {
     enable = true;
-    settings.event = "BufReadPost";
+    settings.event = "User LazyFile";
   };
   plugins.indent-blankline.settings = {
     exclude = {

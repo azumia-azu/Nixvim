@@ -116,6 +116,35 @@
     marksman = {
       enable = true;
     };
+    # yaml
+    yamlls = {
+      enable = true;
+      extraOptions = {
+        settings = {
+          yaml = {
+            schemas = {
+              kubernetes = "*.yaml";
+
+              "https://json.schemastore.org/github-workflow" = ".github/workflows/*";
+              "https://json.schemastore.org/github-action" = ".github/action.{yml,yaml}";
+              "https://json.schemastore.org/ansible-stable-2.9" = "roles/tasks/*.{yml,yaml}";
+              "https://json.schemastore.org/ansible-playbook" = "*play*.{yml,yaml}";
+              "https://json.schemastore.org/kustomization" = "kustomization.{yml,yaml}";
+              "https://json.schemastore.org/chart" = "Chart.{yml,yaml}";
+              "https://json.schemastore.org/dependabot-v2" = ".github/dependabot.{yml,yaml}";
+
+              # Docker Compose — fully recommended
+              "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = [
+                "docker-compose.{yml,yaml}"
+                "*compose*.{yml,yaml}"
+              ];
+
+              "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" = "*flow*.{yml,yaml}";
+            };
+          };
+        };
+      };
+    };
   };
 
   plugins.lsp.keymaps = {
@@ -275,8 +304,8 @@
       callback = function()
         local _border = "rounded"
         vim.diagnostic.config({
-          -- virtual_lines = true,
-          virtual_text = true,
+          -- virtual_lines = true, -- 诊断提示虚拟行
+          virtual_text = true, -- 诊断提示内行提示
 
           signs = {
             active = true,

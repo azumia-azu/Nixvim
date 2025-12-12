@@ -1,6 +1,33 @@
 local M = {}
 
 M.colorschemes = {
+	-- ayu主题
+	["ayu-dark"] = {},
+	["ayu-light"] = {},
+	["ayu-mirage"] = {},
+
+	-- cyberdream-nvim主题
+	["cyberdream"] = { style = "dark" },
+
+	-- dracula-nvim主题
+	["dracula"] = {},
+	["dracula-soft"] = {},
+
+	-- monokai-pro-nvim主题
+	["monokai-pro-default"] = {},
+	["monokai-pro-ristretto"] = {},
+	["monokai-pro-classic"] = {},
+	["monokai-pro-light"] = {},
+	["monokai-pro-machine"] = {},
+	["monokai-pro-octagon"] = {},
+	["monokai-pro-spectrum"] = {},
+
+	-- onedark-nvim主题
+	["onedark"] = { style = "dark" },
+
+	-- poimandres主题
+	["poimandres"] = {},
+
 	-- gtihub主题
 	["github_dark"] = {},
 	["github_dark_dimmed"] = {},
@@ -14,7 +41,7 @@ M.colorschemes = {
 	["github_light_colorblind"] = {},
 	["github_light_tritanopia"] = {},
 
-	["gruvbox"] = {},
+	["gruvbox"] = { style = "dark" },
 
 	["kanagawa-wave"] = {},
 	["kanagawa-dragon"] = {},
