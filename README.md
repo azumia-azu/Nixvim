@@ -13,6 +13,6 @@
 ## 使用方式
 
 ```bash
-nix run github:xxx/CookNixvim
+nix run github:Youthdreamer/CookNixvim
 
 ```
