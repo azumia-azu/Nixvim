@@ -8,24 +8,26 @@
   # NOTE: 开启这个配置，使得支持osc52的终端能够在ssh链接使用该neovim时可以将neovim的内容复制到系统剪切板中
   # 支持osc52的终端 Windows Terminal, kitty, wezterm, iTerm2, alacritty等
   extraConfigLua = ''
-    local function paste()
-      -- 从默认寄存器 "" 中获取内容，并按换行符分割
-      return {
-        vim.fn.split(vim.fn.getreg(""), "\n"),
-        vim.fn.getregtype(""), -- 同时返回寄存器类型
+    if not vim.g.neovide then
+      local function paste()
+        -- 从默认寄存器 "" 中获取内容，并按换行符分割
+        return {
+          vim.fn.split(vim.fn.getreg(""), "\n"),
+          vim.fn.getregtype(""), -- 同时返回寄存器类型
+        }
+      end
+      vim.g.clipboard = {
+        name = 'OSC 52',
+        copy = {
+          ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+          ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+        },
+        paste = {
+          ['+'] = paste,
+          ['*'] = paste,
+        },
       }
     end
-    vim.g.clipboard = {
-      name = 'OSC 52',
-      copy = {
-        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-      },
-      paste = {
-        ['+'] = paste,
-        ['*'] = paste,
-      },
-    }
   '';
 
   opts = {
