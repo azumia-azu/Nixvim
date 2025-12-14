@@ -1,6 +1,7 @@
 {
   extraConfigLua = ''
     if vim.g.neovide then
+      vim.opt.clipboard = ""; -- 共享系统剪切板
       local map = vim.keymap.set
       map('n', '<D-s>', ':w<CR>') -- Save
       map('v', '<D-c>', '"+y') -- Copy
