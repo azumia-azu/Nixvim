@@ -1,5 +1,6 @@
 {
   extraConfigLua = ''
+
     if vim.g.neovide then
       vim.opt.clipboard = "unnamedplus"
       -- neovide的基础配置文件Basic.lua
