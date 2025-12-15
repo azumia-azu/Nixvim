@@ -30,10 +30,10 @@
           ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
           ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
         },
-        -- paste = {
-        --   ['+'] = paste,
-        --   ['*'] = paste,
-        -- },
+        paste = {
+          ['+'] = paste,
+          ['*'] = paste,
+        },
       }
     end
   '';
