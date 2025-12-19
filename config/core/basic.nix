@@ -24,6 +24,9 @@
         }
       end
       -- NOTE: 在远程ssh连接的终端中使用osc52
+      -- 这里要说明的是flash在使用该osc52接管复制时，
+      -- 无法使用flash的远程复制无法使用p粘贴请使用系统自带的粘贴快捷键
+      -- 更推荐在远程链接时使用系统自带的粘贴快捷键。
       vim.g.clipboard = {
         name = 'OSC 52',
         copy = {
@@ -43,6 +46,10 @@
     number = true; # 显示行号
     relativenumber = true; # 显示相对行号
     cursorline = true; # 启动光标行高亮
+
+    # --- 窗口拆分 ---
+    # splitbelow = true; # 新窗口在下面
+    splitright = true; # 新窗口在右边
 
     winborder = "rounded"; # 浮窗边框
     signcolumn = "yes"; # 永远显示 sign column（诊断标记）

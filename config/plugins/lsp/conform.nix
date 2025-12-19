@@ -1,4 +1,7 @@
-{
+{pkgs, ...}: {
+  extraPackages = [
+    pkgs.cmake-format
+  ];
   plugins.conform-nvim.enable = true;
   plugins.conform-nvim.lazyLoad = {
     settings = {
