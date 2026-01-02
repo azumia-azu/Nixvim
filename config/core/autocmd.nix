@@ -11,9 +11,10 @@
       pattern = "*";
       callback = {
         __raw = ''
-           function()
-           vim.opt_local.formatoptions:remove({ "c", "r" })
-          end'';
+          function()
+            vim.opt_local.formatoptions:remove({ "c", "r" })
+          end
+        '';
       };
     }
 
@@ -38,20 +39,6 @@
             end
            end
           end'';
-      };
-    }
-
-    {
-      desc = "tab大小控制";
-      event = "TextYankPost";
-      pattern = "*";
-      group = "highlight-yank";
-      callback = {
-        __raw = ''
-          function()
-            vim.highlight.on_yank({ timeout = 500 })
-          end
-        '';
       };
     }
 
