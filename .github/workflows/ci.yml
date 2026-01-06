@@ -53,4 +53,4 @@ jobs:
       - name: Push package closure to Cachix
         if: github.event_name == 'push'
         run: |
-          nix path-info -r .#packages.${{ matrix.system }}.default | cachix push mycache
+          nix path-info -r .#packages.${{ matrix.system }}.default | cachix push azumia-azu
