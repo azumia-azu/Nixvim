@@ -2,7 +2,7 @@
   plugins.which-key.enable = true;
   plugins.which-key.lazyLoad = {
     settings = {
-      keys = ["<leader>"];
+      event = ["VimEnter"];
     };
   };
   plugins.which-key.settings = {
