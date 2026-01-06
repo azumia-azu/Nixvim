@@ -1,8 +1,16 @@
+{ lib, pkgs, ... }:
 {
   # 剪切复制
   clipboard = {
     register = "unnamedplus";
-    providers.wl-copy.enable = true;
+    providers = lib.mkMerge [
+      (lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
+        wl-copy.enable = true;
+      })
+      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+        pbcopy.enable = true;
+      })
+    ];
   };
 
   # NOTE: 开启这个配置，使得支持osc52的终端能够在ssh链接使用该neovim时可以将neovim的内容复制到系统剪切板中
