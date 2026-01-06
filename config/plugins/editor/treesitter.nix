@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   plugins.treesitter = {
     enable = true;
-    folding = false;
+    folding.enable = false;
     nixvimInjections = true;
     settings = {
       highlight.enable = true;
@@ -40,7 +41,7 @@
     enable = true;
     settings = {
       # event = ["FileType"];
-      event = ["User LazyFile"];
+      event = [ "User LazyFile" ];
     };
   };
 }
