@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   extraPlugins = with pkgs.vimPlugins; [
-    nvim-yazi
+    yazi-nvim
   ];
 
   extraConfigLua = ''
     require("lz.n").load {
       {
-        "nvim-yazi",
+        "yazi-nvim",
         cmd = { "Yazi" },
       },
     }
