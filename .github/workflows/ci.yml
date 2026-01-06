@@ -9,43 +9,48 @@ permissions:
   contents: read
 
 jobs:
-  flake:
-    name: Nix flake checks
-    runs-on: ubuntu-latest
+  build:
+    name: ${{ matrix.system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+            runs_on: ubuntu-latest
+          # aarch64-linux：如果你的仓库是 private，GitHub 可能没有 arm runner，会失败
+          - system: aarch64-linux
+            runs_on: ubuntu-24.04-arm
+          - system: x86_64-darwin
+            runs_on: macos-15-intel
+          - system: aarch64-darwin
+            runs_on: macos-14
+
+    runs-on: ${{ matrix.runs_on }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 安装 Nix（稳定、推荐）
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v13
 
-      # 启用官方公共缓存 + 可选加速
-      - name: Enable Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v7
+      - uses: DeterminateSystems/magic-nix-cache-action@v7
 
-      # 运行 flake check（会做：eval、tests、nix fmt/linters(如果你定义了)、部分 build）
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: mycache
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      # 1) checks：确保模块 + 配置评估没问题
       - name: Flake check
         run: nix flake check -L
 
-      # 如果你仓库有 packages 输出，顺手 build 一下 default（没有也不会失败）
-      - name: Build default package (if exists)
-        run: |
-          set -euo pipefail
-          if nix flake show --json | jq -e '.packages?["x86_64-linux"]?["default"]? // empty' >/dev/null; then
-            nix build -L .#packages.x86_64-linux.default
-          else
-            echo "No packages.x86_64-linux.default, skip."
-          fi
-        shell: bash
+      # 2) build packages.default：确保 nixvim 能构建
+      - name: Build package
+        run: nix build -L .#packages.${{ matrix.system }}.default
 
-  # 可选：在 macOS 上也跑 eval/check（更慢，但能抓到 Darwin 兼容性问题）
-  flake-macos:
-    name: Nix flake checks (macOS)
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v13
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
-      - run: nix flake check -L
+      # 3) push：仅 main/master push 才推缓存（PR 不推）
+      - name: Push package closure to Cachix
+        if: github.event_name == 'push'
+        run: |
+          nix path-info -r .#packages.${{ matrix.system }}.default | cachix push mycache
