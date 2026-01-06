@@ -17,7 +17,6 @@ jobs:
         include:
           - system: x86_64-linux
             runs_on: ubuntu-latest
-          # aarch64-linux：如果你的仓库是 private，GitHub 可能没有 arm runner，会失败
           - system: aarch64-linux
             runs_on: ubuntu-24.04-arm
           - system: x86_64-darwin
@@ -33,24 +32,8 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v13
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
-
-      - name: Setup Cachix
-        uses: cachix/cachix-action@v15
-        with:
-          name: azumia-azu
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-
-      # 1) checks：确保模块 + 配置评估没问题
       - name: Flake check
         run: nix flake check -L
 
-      # 2) build packages.default：确保 nixvim 能构建
       - name: Build package
         run: nix build -L .#packages.${{ matrix.system }}.default
-
-      # 3) push：仅 main/master push 才推缓存（PR 不推）
-      - name: Push package closure to Cachix
-        if: github.event_name == 'push'
-        run: |
-          nix path-info -r .#packages.${{ matrix.system }}.default | cachix push azumia-azu
