@@ -6,7 +6,7 @@
 }: let
   cfg = config.plugins.leetcode-nvim;
 
-  # 由 nix 管理的 rust 初始化脚本
+  # Rust 初始化脚本，由 nix 管理
   rustInitScript = pkgs.writeShellScript "leetcode-rust-init.sh" ''
     #!/bin/sh
     set -eu
@@ -31,15 +31,12 @@ in {
     enable = lib.mkEnableOption "leetcode-nvim";
 
     rust = {
-      enable = lib.mkEnableOption "Rust integration for leetcode-nvim";
+      enable = lib.mkEnableOption "Enable Rust integration for leetcode-nvim";
 
       autoInit = lib.mkOption {
         type = lib.types.bool;
         default = true;
-        description = ''
-          Automatically generate rust-project.json and restart rust-analyzer
-          when entering a Rust LeetCode question.
-        '';
+        description = "Automatically generate rust-project.json and restart rust-analyzer on Rust questions";
       };
     };
   };
@@ -47,42 +44,41 @@ in {
   ###### config ######
 
   config = lib.mkIf cfg.enable {
-    # 确保插件被加载（保持你原来的语义）
+    # 保留原来的插件模块，确保插件加载
     extraPlugins = [
       pkgs.vimPlugins.leetcode-nvim
     ];
 
-    # Rust hook
+    # Rust hook + 继承原有 settings
     extraConfigLua = lib.mkIf (cfg.rust.enable && cfg.rust.autoInit) ''
+      local oldSettings = vim.deepcopy(${lib.toString (config.plugins.leetcode-nvim.settings or {})})
       local rust_init = "${rustInitScript}"
 
-      require("leetcode").setup({
-        hooks = {
-          ["question_enter"] = {
-            function()
-              -- 只对 Rust 生效
-              if vim.fn.expand("%:e") ~= "rs" then
-                return
-              end
+      local leetcode_cfg = vim.tbl_deep_extend(
+        "force",
+        oldSettings,
+        {
+          hooks = {
+            ["question_enter"] = {
+              function()
+                if vim.fn.expand("%:e") ~= "rs" then
+                  return
+                end
 
-              local ok, _, code = os.execute(rust_init)
-
-              if ok and code == 0 then
-                vim.notify(
-                  "leetcode: rust-project.json updated",
-                  vim.log.levels.INFO
-                )
-                vim.cmd("LspRestart rust_analyzer")
-              else
-                vim.notify(
-                  "leetcode: failed to update rust-project.json",
-                  vim.log.levels.ERROR
-                )
+                local ok, _, code = os.execute(rust_init)
+                if ok and code == 0 then
+                  vim.notify("leetcode: rust-project.json updated", vim.log.levels.INFO)
+                  vim.cmd("LspRestart rust_analyzer")
+                else
+                  vim.notify("leetcode: failed to update rust-project.json", vim.log.levels.ERROR)
+                end
               end
-            end,
-          },
-        },
-      })
+            }
+          }
+        }
+      )
+
+      require("leetcode").setup(leetcode_cfg)
     '';
   };
 }
