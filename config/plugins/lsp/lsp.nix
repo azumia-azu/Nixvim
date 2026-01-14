@@ -59,6 +59,18 @@
         };
       };
     };
+    jdtls = {
+      enable = true;
+      rootMarkers = [".git" "mvnw" "pom.xml" "gradlew" "build.gradle"];
+
+      settings = {
+        java = {
+          configuration = {
+            updateBuildConfiguration = "interactive";
+          };
+        };
+      };
+    };
     # Ruff
     ruff = {
       enable = true;
