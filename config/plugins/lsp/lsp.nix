@@ -336,5 +336,17 @@
           })
         end,
       })
+    -- rust 文件：插入时关，离开插入时开
+    vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+      callback = function()
+        pcall(vim.lsp.inlay_hint.enable, false, { bufnr = 0 })
+      end,
+    })
+
+    vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+      callback = function()
+        pcall(vim.lsp.inlay_hint.enable, true, { bufnr = 0 })
+      end,
+    })
   '';
 }
