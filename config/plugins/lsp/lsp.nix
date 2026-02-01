@@ -25,14 +25,16 @@
     rust_analyzer = {
       enable = true;
       # 解决 cargo 依赖警告
-      installCargo = true;
+      installCargo = false;
       # 解决 rustc 依赖警告
-      installRustc = true;
+      installRustc = false;
       settings = {
-        check = {
-          command = "clippy";
-          onSave = true;
+        cargo = {
+          allFeatures = true;
+          buildScripts.enable = true;
         };
+        checkOnSave = true;
+        check.command = "clippy";
         inlayHints = {
           enable = true;
           typeHints.enable = true;
@@ -336,7 +338,7 @@
           })
         end,
       })
-    -- rust 文件：插入时关，离开插入时开
+
     vim.api.nvim_create_autocmd({ "InsertEnter" }, {
       callback = function()
         pcall(vim.lsp.inlay_hint.enable, false, { bufnr = 0 })
