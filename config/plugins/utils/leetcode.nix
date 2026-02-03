@@ -47,8 +47,6 @@
                   print("Failed to open file: " .. cargo_path)
                 end
 
-                -- like the extraPackages, only keep these two lines if you dont have a system-wide rust-toochain configured
-                vim.env.RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}"
                 vim.cmd("LspRestart rust_analyzer")
               end
             '';
@@ -57,3 +55,4 @@
     };
   };
 }
+
