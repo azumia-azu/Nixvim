@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   plugins.treesitter = {
     enable = true;
     folding.enable = false;
@@ -34,6 +33,7 @@
       xml # 一些 XML 文件
       yaml # yaml 文件
       diff
+      typst
     ];
   };
 
@@ -41,7 +41,7 @@
     enable = true;
     settings = {
       # event = ["FileType"];
-      event = [ "User LazyFile" ];
+      event = ["User LazyFile"];
     };
   };
 }

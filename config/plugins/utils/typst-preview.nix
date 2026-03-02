@@ -1,9 +1,9 @@
 {
-  plugins.markdown-preview.enable = true;
+  plugins.typst-preview.enable = true;
   keymaps = [
     {
       mode = "n";
-      key = "<leader>pm";
+      key = "<leader>pt";
       action = "<cmd>MarkdownPreviewToggle<cr>";
       options = {
         silent = true;

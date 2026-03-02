@@ -61,6 +61,11 @@
         };
       };
     };
+
+    # typst 语言服务器
+    tinymist.enable = true;
+
+    # Java 语言服务器
     jdtls = {
       enable = true;
       rootMarkers = [".git" "mvnw" "pom.xml" "gradlew" "build.gradle"];
