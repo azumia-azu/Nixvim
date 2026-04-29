@@ -163,6 +163,11 @@
         };
       };
     };
+
+    # typst
+    tinymist = {
+      enable = true;
+    };
   };
 
   plugins.lsp.keymaps = {
