@@ -8,7 +8,7 @@
     # enableTelescope = true;
     settings = {
       excludeDirs = [];
-      use_lsp = true;
+      lsp.enabled = true;
       # 即将废弃
       # detection_methods = [
       #   "pattern"
