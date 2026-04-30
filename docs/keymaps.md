@@ -128,7 +128,23 @@
 | `<leader>hw` | `n` | 切换单词级差异显示 | `config/plugins/git/gitsigns.nix` |
 | `ih` | `o/x` | 选择当前 Git hunk | `config/plugins/git/gitsigns.nix` |
 
-## 6. 调试 DAP
+## 6. AI 与 opencode
+
+`opencode.nvim` 参考其 README 的推荐动作集进行了本地适配。
+
+- 未直接采用 README 里的 `<C-a>` / `<C-x>` / `<C-.>`，因为当前配置里 `<C-a>` 已用于“全选”，并且本仓库已预留 `<leader>a` 作为 AI 分组。
+
+| 快捷键 | 模式 | 作用 | 来源 |
+| --- | --- | --- | --- |
+| `<leader>aa` | `n/x` | 以 `@this:` 作为上下文发起提问并直接提交 | `config/plugins/ai/opencode.nix` |
+| `<leader>ao` | `n/x` | 打开 opencode 动作选择器 | `config/plugins/ai/opencode.nix` |
+| `<leader>at` | `n/t` | 切换 opencode 面板 | `config/plugins/ai/opencode.nix` |
+| `go` | `n/x` | 将当前选区或操作范围加入 opencode 上下文 | `config/plugins/ai/opencode.nix` |
+| `goo` | `n` | 将当前行加入 opencode 上下文 | `config/plugins/ai/opencode.nix` |
+| `<S-C-u>` | `n` | opencode 会话上滚半页 | `config/plugins/ai/opencode.nix` |
+| `<S-C-d>` | `n` | opencode 会话下滚半页 | `config/plugins/ai/opencode.nix` |
+
+## 7. 调试 DAP
 
 | 快捷键 | 模式 | 作用 | 来源 |
 | --- | --- | --- | --- |
@@ -155,9 +171,9 @@
 
 - `dap-ui.nix`、`dap-lldb.nix`、`dap-virtual-text` 中重复声明了部分懒加载键，实际用户侧仍是上表这组按键。
 
-## 7. 缓冲区、折叠与终端
+## 8. 缓冲区、折叠与终端
 
-### 7.1 缓冲区
+### 8.1 缓冲区
 
 | 快捷键 | 模式 | 作用 | 来源 |
 | --- | --- | --- | --- |
@@ -170,14 +186,14 @@
 | `<leader>bp` | `n` | 切换固定状态 | `config/plugins/ui/bufferline.nix` |
 | `<leader>bP` | `n` | 删除未固定缓冲区 | `config/plugins/ui/bufferline.nix` |
 
-### 7.2 折叠
+### 8.2 折叠
 
 | 快捷键 | 模式 | 作用 | 来源 |
 | --- | --- | --- | --- |
 | `zR` | `n` | 打开全部折叠 | `config/plugins/editor/ufo.nix` |
 | `zM` | `n` | 折叠全部代码 | `config/plugins/editor/ufo.nix` |
 
-### 7.3 终端
+### 8.3 终端
 
 | 快捷键 | 模式 | 作用 | 来源 |
 | --- | --- | --- | --- |
@@ -188,9 +204,9 @@
 | `<Esc>` | `t` | 终端模式退回 Normal | `config/plugins/utils/toggleterm.nix` |
 | `<C-\\>` | `n/t` | ToggleTerm `open_mapping` | `config/plugins/utils/toggleterm.nix` |
 
-## 8. 标记、主题与预览
+## 9. 标记、主题与预览
 
-### 8.1 Harpoon 标记
+### 9.1 Harpoon 标记
 
 | 快捷键 | 模式 | 作用 | 来源 |
 | --- | --- | --- | --- |
@@ -203,14 +219,14 @@
 | `<leader>m[` | `n` | 上一个标记 | `config/plugins/utils/harpoon.nix` |
 | `<leader>m]` | `n` | 下一个标记 | `config/plugins/utils/harpoon.nix` |
 
-### 8.2 主题与 Markdown
+### 9.2 主题与 Markdown
 
 | 快捷键 | 模式 | 作用 | 来源 |
 | --- | --- | --- | --- |
 | `<leader>T` | `n` | 主题切换 | `config/plugins/colorschemes/default.nix` |
 | `<leader>p` | `n` | Markdown 预览开关 | `config/plugins/utils/markdown-preview.nix` |
 
-## 9. Obsess 专注面板
+## 10. Obsess 专注面板
 
 | 快捷键 | 模式 | 作用 | 来源 |
 | --- | --- | --- | --- |
@@ -223,7 +239,7 @@
 | `<leader>od` | `n` | 删除任务 | `config/plugins/github/obsess.nix` |
 | `<leader>oe` | `n` | 清空任务列表 | `config/plugins/github/obsess.nix` |
 
-## 10. Dashboard 启动页
+## 11. Dashboard 启动页
 
 仅在无文件参数启动 Neovim 时生效。
 
@@ -235,9 +251,9 @@
 | `s` | Dashboard | 恢复会话 | `config/plugins/ui/dashboard.nix` |
 | `q` | Dashboard | 退出 Neovim | `config/plugins/ui/dashboard.nix` |
 
-## 11. 特定界面内的局部按键
+## 12. 特定界面内的局部按键
 
-### 11.1 Telescope 面板内
+### 12.1 Telescope 面板内
 
 在 Telescope 的插入模式和普通模式中，以下键位被显式改写：
 
@@ -247,7 +263,7 @@
 | `<A-v>` | Telescope `i/n` | 垂直分屏打开选中项 | `config/plugins/utils/telescope.nix` |
 | `<A-t>` | Telescope `i/n` | 新标签页打开选中项 | `config/plugins/utils/telescope.nix` |
 
-### 11.2 UFO 折叠预览窗口
+### 12.2 UFO 折叠预览窗口
 
 | 快捷键 | 场景 | 作用 | 来源 |
 | --- | --- | --- | --- |
@@ -256,13 +272,13 @@
 | `[` | UFO 预览窗 | 跳到顶部 | `config/plugins/editor/ufo.nix` |
 | `]` | UFO 预览窗 | 跳到底部 | `config/plugins/editor/ufo.nix` |
 
-### 11.3 Neo-tree 面板内
+### 12.3 Neo-tree 面板内
 
 | 快捷键 | 场景 | 作用 | 来源 |
 | --- | --- | --- | --- |
 | `<Space>` | Neo-tree | 被显式禁用，不执行任何动作 | `config/plugins/editor/neo-tree.nix` |
 
-## 12. Neovide 专用
+## 13. Neovide 专用
 
 仅在 `vim.g.neovide` 为真时生效。
 
@@ -277,7 +293,7 @@
 | `<C-=>` | `n` | UI 放大 | `config/neovide/keymap.nix` |
 | `<C-->` | `n` | UI 缩小 | `config/neovide/keymap.nix` |
 
-## 13. Which-key 分组前缀
+## 14. Which-key 分组前缀
 
 `which-key` 为以下前缀注册了分组名称，便于记忆和弹窗提示：
 

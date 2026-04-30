@@ -3,7 +3,7 @@
   plugins.render-markdown.lazyLoad = {
     enable = true;
     settings = {
-      ft = ["markdown" "norg" "rmd" "org" "Avante" "codecompanion"];
+      ft = ["markdown" "norg" "rmd" "org" "codecompanion"];
     };
   };
   plugins.render-markdown.settings = {
