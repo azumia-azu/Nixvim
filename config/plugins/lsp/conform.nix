@@ -25,7 +25,7 @@
         # 整理 import（按规则排序、删除未使用的 import）。
         "ruff_organize_imports"
       ];
-      nix = ["alejandra"];
+      nix = ["nixfmt"];
       lua = ["stylua"];
       go = ["goimports"]; # 包含gofmt的功能，附带import的管理
       javascript = [
