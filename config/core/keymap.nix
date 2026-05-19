@@ -54,27 +54,6 @@
       };
     }
 
-    # 剪贴板复制
-    {
-      mode = "v";
-      key = "<leader>Y";
-      action = "\"+y";
-      options = {
-        desc = "复制到系统剪贴板";
-      };
-    }
-
-    {
-      mode = "v";
-      key = "<leader>D";
-      action = "\"+x";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "剪切";
-      };
-    }
-
     # 退出
     {
       mode = "n";

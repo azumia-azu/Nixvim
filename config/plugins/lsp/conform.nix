@@ -6,7 +6,7 @@
   plugins.conform-nvim.lazyLoad = {
     settings = {
       cmd = ["ConformInfo"];
-      event = ["BufWrite"];
+      event = ["User LazyFile"];
     };
   };
   plugins.conform-nvim.autoInstall.enable = true;
@@ -15,7 +15,7 @@
     formatters_by_ft = {
       c = ["clang_format"];
       cpp = ["clang_format"];
-      cmake = ["cmake-format"];
+      cmake = ["cmake_format"];
       rust = ["rustfmt"];
       python = [
         # 修复可以被 Ruff 自动修复的 lint（代码规范）错误。
@@ -28,42 +28,51 @@
       nix = ["nixfmt"];
       lua = ["stylua"];
       go = ["goimports"]; # 包含gofmt的功能，附带import的管理
-      javascript = [
-        "prettierd"
-        "prettier"
-      ];
-      typescript = [
-        "prettierd"
-        "prettier"
-      ];
-      javascriptreact = [
-        "prettier"
-        "prettierd"
-      ];
-      typescriptreact = [
-        "prettierd"
-        "prettier"
-      ];
-      css = [
-        "prettierd"
-        "prettier"
-      ];
-      scss = [
-        "prettierd"
-        "prettier"
-      ];
-      html = [
-        "prettierd"
-        "prettier"
-      ];
+      javascript = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
+      typescript = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
+      javascriptreact = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
+      typescriptreact = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
+      css = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
+      scss = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
+      html = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
       toml = ["taplo"];
       yaml = ["yamlfmt"];
-      markdown = [
-        "prettierd"
-        "prettier"
-      ];
-      json = ["jq"];
+      markdown = {
+        __unkeyed-1 = "prettierd";
+        __unkeyed-2 = "prettier";
+        stop_after_first = true;
+      };
+      json = ["prettierd"];
       bash = ["shfmt"];
+      typst = ["typstyle"];
     };
 
     format_on_save = {

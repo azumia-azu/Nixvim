@@ -1,6 +1,5 @@
 {
   description = "CookNixvim — a modular Neovim configuration built with Nix";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
@@ -43,6 +42,7 @@
 
         packages = {
           # Lets you run `nix run .` to start nixvim
+          cook-nixvim = nvim;
           default = nvim;
         };
         apps.default = {

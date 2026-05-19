@@ -1,0 +1,39 @@
+name: cook-nixvim CI
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - README.md
+      - README.*
+  pull_request:
+    paths-ignore:
+      - README.md
+      - README.*
+  workflow_dispatch:
+concurrency:
+  group: cook-nixvim-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+            os: ubuntu-latest
+          - system: aarch64-linux
+            os: ubuntu-24.04-arm
+            # 以下macOS架构可选
+            # - system: x86_64-darwin
+            #   os: macos-latest
+            # - system: aarch64-darwin
+            #   os: macos-14
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: Build cook-nixvim
+        run: nix build .#packages.${{ matrix.system }}.cook-nixvim -L

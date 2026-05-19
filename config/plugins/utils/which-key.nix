@@ -2,7 +2,8 @@
   plugins.which-key.enable = true;
   plugins.which-key.lazyLoad = {
     settings = {
-      event = ["VimEnter"];
+      # keys = ["<leader>"];
+      event = "User CookLazy";
     };
   };
   plugins.which-key.settings = {
@@ -30,7 +31,7 @@
         icon = "󱚣";
         mode = ["n" "v"];
       }
-      # ===== 调试主分组 =====
+
       {
         __unkeyed-1 = "<leader>d";
         group = "调试";
@@ -97,7 +98,7 @@
       {
         __unkeyed-1 = "<leader>e";
         group = "Neotree";
-        icon = "“";
+        icon = "";
         mode = "n";
       }
 
@@ -131,8 +132,8 @@
 
       {
         __unkeyed-1 = "<leader>p";
-        group = "Markdown内容预览";
-        icon = "󰍔";
+        group = "文档内容预览(typ/md)";
+        icon = "󰈈";
         mode = "n";
       }
       {

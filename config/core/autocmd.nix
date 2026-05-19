@@ -43,31 +43,23 @@
     }
 
     {
-      desc = "部分文档文件开启自动软换行";
+      desc = "部分文档文件开启自动软换行并添加中文符号作为换行标志";
       event = "FileType";
-      pattern = ["markdown" "md" "text"];
+      pattern = ["markdown" "text"];
       callback = {
         __raw = ''
           function()
             vim.opt_local.wrap = true
             vim.opt_local.linebreak = true
+            vim.opt_local.breakat:append("，。！？；：")
+            vim.opt_local.expandtab = true   -- Tab 转空格
+            vim.opt_local.shiftwidth = 2     -- 缩进 2 空格
+            vim.opt_local.tabstop = 2        -- Tab 显示为 2 空格
+            vim.opt_local.softtabstop = 2
           end
         '';
       };
     }
-
-    # {
-    #    desc = "保存格式化";
-    #    event = "BufWritePre";
-    #    pattern = "*";
-    #    callback = {
-    #      __raw = ''
-    #        function()
-    #          vim.lsp.buf.format()
-    #        end
-    #      '';
-    #    };
-    # }
 
     {
       desc = "复制高亮";

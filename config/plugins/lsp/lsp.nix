@@ -3,27 +3,30 @@
   plugins.lsp = {
     enable = true;
     inlayHints = true;
-  };
-  plugins.lsp.lazyLoad = {
-    enable = true;
-    settings = {
-      # 使用ft加载lsp后startuptime的速度还会提高十多毫秒，但是我觉得维护太麻烦，不如就使用event。方便不差这点速度
-      # ft = ["lua" "nix" "rust" "go" "python" "c" "cpp" "typescript" "javascript"];
-      event = ["FileType"];
+    lazyLoad = {
+      enable = true;
+      settings = {
+        # 使用ft加载lsp后startuptime的速度还会提高十多毫秒，但是我觉得维护太麻烦，不如就使用event。方便不差这点速度
+        # ft = ["lua" "nix" "rust" "go" "python" "c" "cpp" "typescript" "javascript"];
+        event = ["FileType"];
+      };
     };
   };
   plugins.lsp.servers = {
     # C/C++ 语言服务器
     clangd = {
       enable = true;
+      packageFallback = true;
     };
     # CMake的LSP
     cmake = {
       enable = true;
+      packageFallback = true;
     };
     # Rust 语言服务器
     rust_analyzer = {
       enable = true;
+      packageFallback = true;
       # 解决 cargo 依赖警告
       installCargo = false;
       # 解决 rustc 依赖警告
@@ -46,10 +49,12 @@
     # ts/js 语言服务器
     ts_ls = {
       enable = true;
+      packageFallback = true;
     };
     # python 语言服务器
     pyright = {
       enable = true;
+      packageFallback = true;
       settings = {
         pyright = {
           disableOrganizeImports = true; # 禁用 Pyright 自动整理 import
@@ -61,9 +66,6 @@
         };
       };
     };
-
-    # typst 语言服务器
-    tinymist.enable = true;
 
     # Java 语言服务器
     jdtls = {
@@ -81,17 +83,24 @@
     # Ruff
     ruff = {
       enable = true;
+      packageFallback = true;
     };
     # lua 语言服务器
     lua_ls = {
       enable = true;
       settings = {
-        diagnostics.globals = ["vim"];
+        Lua = {
+          diagnostics.globals = ["vim"];
+          hint = {
+            enable = false;
+          };
+        };
       };
     };
     # go 语言服务器
     gopls = {
       enable = true;
+      packageFallback = true;
     };
     # Shell 语言服务器
     bashls = {
@@ -100,6 +109,15 @@
     # Nix 语言服务器
     nil_ls = {
       enable = true;
+      settings = {
+        nil = {
+          nix = {
+            flake = {
+              autoArchive = false;
+            };
+          };
+        };
+      };
     };
     # html
     html = {
@@ -111,6 +129,7 @@
     };
     stylelint_lsp = {
       enable = true;
+      packageFallback = true;
     };
     # Tailwind CSS 语言服务器
     tailwindcss = {
@@ -122,6 +141,11 @@
     };
     # eslint
     eslint = {
+      enable = true;
+      packageFallback = true;
+    };
+    # typst
+    tinymist = {
       enable = true;
     };
     # json
@@ -165,153 +189,111 @@
     };
   };
 
-  plugins.lsp.keymaps = {
-    silent = true;
-    lspBuf = {
-      gd = {
-        action = "definition";
-        desc = "转到定义";
-      };
-      gr = {
-        action = "references";
-        desc = "查找引用";
-      };
-      gD = {
-        action = "declaration";
-        desc = "跳转到声明";
-      };
-      gi = {
-        action = "implementation";
-        desc = "查找实现";
-      };
-      gt = {
-        action = "type_definition";
-        desc = "跳转到类型定义";
-      };
-      # K = {
-      #   action = "hover";
-      #   desc = "显示悬浮文档 / 悬浮信息";
-      # };
-      "<leader>cR" = {
-        action = "rename";
-        desc = "重命名符号";
-      };
-      "<leader>ca" = {
-        action = "code_action";
-        desc = "代码操作";
-      };
-    };
-
-    diagnostic = {
-      "<leader>cd" = {
-        action = "open_float";
-        desc = "打开当前行的诊断信息浮窗";
-      };
-      "[d" = {
-        action = "goto_prev";
-        desc = "跳转到上一个诊断";
-      };
-      "]d" = {
-        action = "goto_next";
-        desc = "跳转到下一个诊断";
-      };
-    };
-  };
-
   keymaps = [
     # 悬浮信息
     {
-      action.__raw = ''
-        function()
-          vim.lsp.buf.hover()
-        end
-      '';
       key = "K";
-      options = {
-        silent = true;
-        desc = "显示悬浮文档 / 悬浮信息";
-      };
+      action = "<cmd>lua vim.lsp.buf.hover()<cr>";
+      options.desc = "显示悬浮文档 / 悬浮信息";
     }
     # 查找实现/引用
     {
-      action = "<cmd>Telescope lsp_implementations<cr>";
       key = "<leader>ci";
-      options = {
-        silent = true;
-        desc = "查找实现";
-      };
+      action = "<cmd>Telescope lsp_implementations<cr>";
+      options.desc = "查找实现";
     }
     {
-      action = "<cmd>Telescope lsp_references<cr>";
       key = "<leader>cr";
-      options = {
-        silent = true;
-        desc = "查找引用";
-      };
+      action = "<cmd>Telescope lsp_references<cr>";
+      options.desc = "查找引用";
     }
-
     # 代码结构查看
     {
-      action = "<cmd>Telescope lsp_workspace_symbols<cr>";
       key = "<leader>cw";
-      options = {
-        silent = true;
-        desc = "查找工作区符号";
-      };
+      action = "<cmd>Telescope lsp_workspace_symbols<cr>";
+      options.desc = "查找工作区符号";
     }
     {
-      action = "<cmd>Telescope lsp_document_symbols<cr>";
       key = "<leader>cf";
-      options = {
-        silent = true;
-        desc = "文件大纲";
-      };
+      action = "<cmd>Telescope lsp_document_symbols<cr>";
+      options.desc = "文件大纲";
     }
-
     # 代码关系查看
     {
-      action = "<cmd>Telescope lsp_incoming_calls<cr>";
       key = "<leader>c[";
-      options = {
-        silent = true;
-        desc = "被调列表";
-      };
+      action = "<cmd>Telescope lsp_incoming_calls<cr>";
+      options.desc = "被调列表";
     }
     {
-      action = "<cmd>Telescope lsp_outgoing_calls<cr>";
       key = "<leader>c]";
-      options = {
-        silent = true;
-        desc = "调用列表";
-      };
+      action = "<cmd>Telescope lsp_outgoing_calls<cr>";
+      options.desc = "调用列表";
     }
-
     # 诊断查看
     {
-      action = "<cmd>Telescope diagnostics bufnr=0<cr>";
       key = "<leader>ce";
-      options = {
-        silent = true;
-        desc = "当前文件诊断";
-      };
+      action = "<cmd>Telescope diagnostics bufnr=0<cr>";
+      options.desc = "当前文件诊断";
     }
-
     {
-      action = "<cmd>Telescope diagnostics<cr>";
       key = "<leader>cW";
-      options = {
-        silent = true;
-        desc = "全局诊断";
-      };
+      action = "<cmd>Telescope diagnostics<cr>";
+      options.desc = "全局诊断";
     }
-
     {
-      action = "<cmd>lua vim.diagnostic.open_float()<cr>";
       key = "<leader>D";
-      options = {
-        silent = true;
-        desc = "显示诊断信息 (浮窗)";
-      };
+      action = "<cmd>lua vim.diagnostic.open_float()<cr>";
+      options.desc = "显示诊断信息 (浮窗)";
+    }
+    {
+      key = "<leader>cd";
+      action = "<cmd>lua vim.diagnostic.open_float()<cr>";
+      options.desc = "打开当前行的诊断信息浮窗";
+    }
+    {
+      key = "[d";
+      action = "<cmd>lua vim.diagnostic.jump({ count=-1, float=true })<cr>";
+      options.desc = "跳转到上一个诊断";
+    }
+    {
+      key = "]d";
+      action = "<cmd>lua vim.diagnostic.jump({ count=1, float=true })<cr>";
+      options.desc = "跳转到下一个诊断";
+    }
+    {
+      key = "<leader>cR";
+      action = "<cmd>lua vim.lsp.buf.rename()<cr>";
+      options.desc = "重命名符号";
+    }
+    {
+      key = "<leader>ca";
+      action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
+      options.desc = "代码操作";
+    }
+    {
+      key = "gD";
+      action = "<cmd>lua vim.lsp.buf.declaration()<cr>";
+      options.desc = "跳转到声明";
+    }
+    {
+      key = "gd";
+      action = "<cmd>lua vim.lsp.buf.definition()<cr>";
+      options.desc = "转到定义";
+    }
+    {
+      key = "gi";
+      action = "<cmd>lua vim.lsp.buf.implementation()<cr>";
+      options.desc = "查找实现";
+    }
+    {
+      key = "gr";
+      action = "<cmd>lua vim.lsp.buf.references()<cr>";
+      options.desc = "查找引用";
+    }
+    {
+      key = "gt";
+      action = "<cmd>lua vim.lsp.buf.type_definition()<cr>";
+      options.desc = "跳转到类型定义";
     }
   ];
 
@@ -334,7 +316,8 @@
                 [vim.diagnostic.severity.HINT] = "💡",
               },
             },
-            update_in_insert = false,
+            update_in_insert = true,
+            -- update_in_insert = false,
             underline = true,
             severity_sort = true,
             float = {
