@@ -2,21 +2,7 @@
   #######主题选择功能########
   #使用lua文件导入的主题修改功能
   extraPlugins = with pkgs.vimPlugins; [
-    neovim-ayu
     catppuccin-nvim
-    cyberdream-nvim
-    dracula-nvim
-    github-nvim-theme
-    gruvbox-nvim
-    kanagawa-nvim
-    monokai-pro-nvim
-    onedark-nvim
-    poimandres-nvim
-    nightfox-nvim
-    nord-nvim
-    rose-pine
-    tokyonight-nvim
-    vague-nvim
   ];
   extraFiles."lua/features/theme-list.lua".source = ./theme-list.lua;
   extraFiles."lua/features/switch-theme.lua".source = ./switch-theme.lua;

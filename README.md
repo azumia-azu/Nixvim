@@ -129,7 +129,7 @@ Neovide 专用配置
   AI 相关插件，用于代码辅助与对话式编辑
   - **[avante](./config/plugins/ai/avante.nix)**: 基于大模型的代码助手，支持对话、修改与生成代码
   - **[blink-cmp-avante](./config/plugins/ai/blink-cmp-avante.nix)**: 将 Avante 能力接入补全系统，提供 AI 辅助补全体验
-- **[colorschemes/](./config/plugins/colorschemes/)**: 统一管理并切换多款第三方配色主题
+- **[colorschemes/](./config/plugins/colorschemes/)**: 统一管理 Catppuccin 配色主题
 - dap
   调试相关插件，提供统一的调试体验
   - **[nvim-dap](./config/plugins/dap/dap.nix)**: Neovim 的核心调试框架
@@ -175,7 +175,6 @@ Neovide 专用配置
   - **[dressing](./config/plugins/ui/dressing.nix)**: 优化输入框与选择菜单 UI
   - **[lualine](./config/plugins/ui/lualine.nix)**: 轻量且高度可定制的状态栏
   - **[noice](./config/plugins/ui/noice.nix)**: 重构消息、命令行与通知 UI
-  - **[transparent](./config/plugins/ui/transparent.nix)**: 提供透明背景支持
 - utils
   通用效率工具插件
   - **[flash](./config/plugins/utils/flash.nix)**: 快速跳转到任意位置
@@ -255,8 +254,8 @@ Neovide 专用配置
 
 ## 主题切换说明
 
-首次启动时默认主题为 `colorscheme default` 使用快捷键 `<leader>T` 可切换多种第三方主题。  
-为实现主题切换功能，请将安装好的第三方主题的切换命令，如`gruvbox` 主题的切换命令为 `colorscheme gruvbox` 则在 [`theme-list.lua`](./config/plugins/colorschemes/theme-list.lua) 文件中写入该切换名称并设定 `dark` 或者 `light` 的模式。示例：`["gruvbox"] = { style = "dark" }`
+首次启动时默认主题为 `colorscheme catppuccin-mocha`，使用快捷键 `<leader>T` 可在 Catppuccin 的不同风格间切换。  
+当前仅保留 [`catppuccin-nvim`](https://github.com/catppuccin/nvim) 作为配色主题插件，主题列表维护在 [`theme-list.lua`](./config/plugins/colorschemes/theme-list.lua)。
 
 ## 复制粘贴功能说明
 
@@ -313,8 +312,7 @@ Neovide 专用配置
 ## 启动速度说明
 
 - 禁用 [dashborad.nix](./config/plugins/ui/dashboard.nix) 该插件，可大幅提升首页加载速度(不影响打开文件速度)。
-- 禁用 [transparent.nix](./config/plugins/ui/transparent.nix) 该插件，也可提高首页加载速度。
-- 使用不同第三方插件的颜色主题也会影响启动速度，其中个人推荐使用 `gruvbox` 对启动速度的影响较小。
+- 配色主题插件会影响启动速度，当前仅保留 `catppuccin-nvim` 以减少主题相关加载范围。
 
 > 如不需要该插件，请 `fork` 仓库后将其注释或移除，以获得更快的加载体验。
 

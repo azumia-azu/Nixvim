@@ -1,8 +1,11 @@
+---@diagnostic disable: undefined-global
+
 local M = {}
 
 -- 导入自定义主题配置表
 local custom_theme_list = require("features.theme-list").colorschemes
 
+local default_theme = "catppuccin-mocha"
 local theme_name_list = vim.tbl_keys(custom_theme_list) -- 主题名称表
 local config_path = vim.fn.stdpath("data") -- 这个是nvim的配置文件的位置
 local theme_path = config_path .. "/theme" -- 主题持久化文件位置
@@ -20,6 +23,11 @@ local function load_theme()
 			local theme_name, style = string.match(data, "([^:]+):?([^:]*)")
 
 			if theme_name and theme_name ~= "" then
+				if not custom_theme_list[theme_name] then
+					theme_name = default_theme
+					style = nil
+				end
+
 				-- 1. 应用 style
 				if style and style ~= "" then
 					vim.o.background = style -- 设置 vim 的 'background' 选项
@@ -29,8 +37,10 @@ local function load_theme()
 				vim.cmd("colorscheme " .. theme_name)
 			end
 		else
-			vim.cmd("colorscheme default")
+			vim.cmd("colorscheme " .. default_theme)
 		end
+	else
+		vim.cmd("colorscheme " .. default_theme)
 	end
 end
 

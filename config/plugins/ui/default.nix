@@ -6,6 +6,5 @@
     ./bufferline.nix
     ./colorizer.nix
     ./dressing.nix
-    ./transparent.nix
   ];
 }
