@@ -58,7 +58,7 @@
       };
     }
     {
-      action = "<CMD>Telescope find_files theme=dropdown previewer=false layout_config={height=0.3}<CR>";
+      action = "<CMD>Telescope find_files layout_strategy=horizontal layout_config={width=0.9,height=0.8,preview_width=0.55}<CR>";
       key = "<leader>ff";
       options = {
         silent = true;
