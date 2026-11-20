@@ -19,6 +19,7 @@
       python # pyright, ruff
       rust # rust_analyzer
       go # gopls
+      haskell # hls
       javascript # ts_ls
       typescript # ts_ls
       tsx
@@ -40,7 +41,7 @@
   plugins.treesitter.lazyLoad = {
     enable = true;
     settings = {
-      event = ["User LazyFile" "User CookLazy"];
+      event = ["FileType"];
     };
   };
 }
