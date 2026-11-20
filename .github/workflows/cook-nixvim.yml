@@ -23,9 +23,7 @@ jobs:
             os: ubuntu-latest
           - system: aarch64-linux
             os: ubuntu-24.04-arm
-            # 以下macOS架构可选
-            # - system: x86_64-darwin
-            #   os: macos-latest
+            # Apple Silicon macOS 构建可选
             # - system: aarch64-darwin
             #   os: macos-14
     runs-on: ${{ matrix.os }}

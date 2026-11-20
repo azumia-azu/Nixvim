@@ -19,8 +19,6 @@ jobs:
             runs_on: ubuntu-latest
           - system: aarch64-linux
             runs_on: ubuntu-24.04-arm
-          - system: x86_64-darwin
-            runs_on: macos-15-intel
           - system: aarch64-darwin
             runs_on: macos-14
 

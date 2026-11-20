@@ -250,7 +250,9 @@ Neovide 专用配置
 
 ## LSP 说明
 
-默认安装 rust, c/cpp, python, lua, nix, go, ts/js, typst 等，详情可到 [`lsp.nix`](./config/plugins/lsp/lsp.nix) 文件下查看
+默认安装 rust, c/cpp, python, lua, nix, go, haskell, ts/js, typst 等，详情可到 [`lsp.nix`](./config/plugins/lsp/lsp.nix) 文件下查看
+
+Haskell 项目中的 `.hs` 和 `.lhs` 文件会自动启动 Haskell Language Server（HLS）。Nixvim 自带 HLS 和 GHC，并优先使用项目环境 `PATH` 中的版本。HLS 需要与项目使用的 GHC 版本匹配。
 
 ## 主题切换说明
 
@@ -327,18 +329,11 @@ Neovide 专用配置
 
 ## Github Actions 说明
 
-本项目的 `Actions` 会在 Linux 架构上构建配置，帮助提前发现配置或依赖问题。
-如果你 `Fork` 本项目，可以根据自己的需要调整 `.github/workflows/cook-nixvim.yml` 的构建架构或触发条件。
-
-> [!TIP]
-> 目前仅构建 `x86_64-linux` 与 `aarch64-linux` 两种架构缓存，另外的 `macos` 架构缓存默认关闭。
-> `macos` 用户请查看[兼容性说明](#兼容性说明)
+`ci.yml` 会检查并构建所有支持的平台。`cook-nixvim.yml` 默认只构建 Linux，可以在 Fork 后按需调整构建架构或触发条件。
 
 ## 兼容性说明
 
-> [!WARNING]
-> **⚠️ 未在 `MacOS` 中测试**
-> 可能无法在 `MacOS` 中正常使用，在 `ArchLinux` 与 `Nixos` 等表现稳定。
+支持 `x86_64-linux`、`aarch64-linux` 和 Apple Silicon macOS（`aarch64-darwin`）。Intel Mac 已移出支持范围。
 
 ## 适用人群
 

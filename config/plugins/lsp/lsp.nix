@@ -46,6 +46,12 @@
         };
       };
     };
+    # Haskell 语言服务器
+    hls = {
+      enable = true;
+      packageFallback = true;
+      installGhc = true;
+    };
     # ts/js 语言服务器
     ts_ls = {
       enable = true;
